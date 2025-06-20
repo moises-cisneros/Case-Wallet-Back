@@ -3,6 +3,22 @@
 ## Overview
 Case is a revolutionary digital wallet solution designed to address the economic challenges faced by Bolivian citizens. Built on the Mantle Network, Case provides a secure and efficient way to preserve value in an environment where economic stability is a daily struggle.
 
+## Project Status
+
+| Feature | Status |
+| :--- | :--- |
+| **User Onboarding** | |
+| 1. User Registration with Google OAuth | ✅ Implemented |
+| 2. Backend Token Validation & Temporal User Creation | ✅ Implemented |
+| 3. Self-Custody Wallet Generation (BIP39) | ✅ Implemented |
+| 4. Smart Contract User Registration | ⏳ In Process |
+| **User Login** | |
+| 1. User Login with Google OAuth | ✅ Implemented |
+| 2. Existing User Validation | ✅ Implemented |
+| 3. Blockchain State Synchronization on Login | ⏳ In Process |
+
+---
+
 ## Problem Statement
 In Bolivia, inflation continues to devalue the hard work of our citizens. Traditional banking solutions often fail to provide adequate protection against currency devaluation, leaving people vulnerable to economic instability.
 
@@ -33,7 +49,7 @@ Case is built using a hexagonal architecture pattern, ensuring:
 - **Backend**: Java with Spring Boot
 - **Database**: PostgreSQL
 - **Blockchain**: Mantle Network
-- **Security**: JWT Authentication
+- **Security**: JWT Authentication, Google OAuth2
 - **API**: RESTful Architecture
 
 ## Why Mantle Network?
