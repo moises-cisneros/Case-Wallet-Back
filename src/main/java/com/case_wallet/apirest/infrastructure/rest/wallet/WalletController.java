@@ -1,8 +1,12 @@
 package com.case_wallet.apirest.infrastructure.rest.wallet;
 
+import com.case_wallet.apirest.application.wallet.dto.AuthResponseDTO;
+import com.case_wallet.apirest.application.wallet.dto.GenerateWalletRequestDTO;
 import com.case_wallet.apirest.application.wallet.dto.TransactionRequestDTO;
 import com.case_wallet.apirest.application.wallet.dto.WalletBalanceDTO;
+import com.case_wallet.apirest.application.wallet.port.in.GenerateWalletUseCase;
 import com.case_wallet.apirest.application.wallet.port.in.WalletUseCase;
+import com.case_wallet.apirest.domain.user.model.User;
 import com.case_wallet.apirest.domain.wallet.model.Transaction;
 //import com.case_wallet.apirest.infrastructure.security.service.SecurityService;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +24,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class WalletController {
     private final WalletUseCase walletUseCase;
+    private final GenerateWalletUseCase generateWalletUseCase;
     //private final SecurityService securityService;
 
     /*
@@ -52,4 +57,16 @@ public class WalletController {
         UUID userId = securityService.getCurrentUserId();
         return ResponseEntity.ok(walletUseCase.confirmTransaction(userId, transactionId));
     }*/
+
+    @PostMapping("/generate")
+    public ResponseEntity<AuthResponseDTO> generateWallet(@RequestBody GenerateWalletRequestDTO request) {
+        AuthResponseDTO response = generateWalletUseCase.generateWallet(request.getUserId());
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/balance")
+    public ResponseEntity<WalletBalanceDTO> getWalletBalance() {
+        // ... existing code ...
+        return null; // Placeholder return, actual implementation needed
+    }
 }

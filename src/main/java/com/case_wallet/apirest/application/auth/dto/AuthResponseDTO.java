@@ -16,5 +16,6 @@ public class AuthResponseDTO {
     private String token;
     private UUID userId;
     private String email;
+    private String mnemonic;
     private Role role;
 }

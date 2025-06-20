@@ -61,8 +61,6 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
             user = userRepository.save(user);
         }
 
-        // Return an OAuth2User that contains our internal user ID and roles
-        // This is crucial for Spring Security to build the Authentication object
         return new CustomOAuth2User(oAuth2User, user.getId().toString(), user.getRoles());
     }
 } 

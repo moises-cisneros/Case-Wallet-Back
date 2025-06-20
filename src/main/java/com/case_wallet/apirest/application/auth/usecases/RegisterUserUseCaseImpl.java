@@ -66,7 +66,6 @@ public class RegisterUserUseCaseImpl implements RegisterUserUseCase {
                 .roles(userMapper.toDomainRoles(roles))
                 .kycStatus(KYCStatus.NONE)
                 .userState(UserState.PENDING_WALLET)
-                .mantleAddress("") // Initial empty mantle address
                 .build();
 
         User savedUser = userRepositoryPort.save(user);
@@ -113,7 +112,6 @@ public class RegisterUserUseCaseImpl implements RegisterUserUseCase {
                 .roles(userMapper.toDomainRoles(roles))
                 .kycStatus(KYCStatus.NONE)
                 .userState(UserState.PENDING_WALLET)
-                .mantleAddress("")
                 .build();
 
         User savedUser = userRepositoryPort.save(user);

@@ -98,7 +98,6 @@ public class WalletService implements WalletUseCase {
                 }
                 wallet.setBalanceLocal(wallet.getBalanceLocal().subtract(transaction.getAmount()));
                 break;
-            // Implementar otros tipos de transacciones según sea necesario
         }
     }
 
