@@ -1,42 +1,25 @@
-PROPRIETARY AND CONFIDENTIAL
+License – Case Wallet MVP for Cookathon 02
 
-Copyright (c) 2025 Case Team. All Rights Reserved.
+Copyright (c) 2025
+The Case Wallet Project – Finalist Team of Cookathon 02
 
-This software and associated documentation files (the "Software") are the proprietary and confidential property of the Case Team. The Software is protected by copyright laws and international copyright treaties, as well as other intellectual property laws and treaties.
+All rights reserved.
 
-TERMS AND CONDITIONS:
+This code associated code were created as part of the Cookathon 02 event and are intended for evaluation by judges and educational inspiration only.
 
-1. OWNERSHIP
-   The Software and all intellectual property rights therein are and shall remain the exclusive property of the Case Team. Nothing in this license shall be construed to grant any rights to the Software or any intellectual property rights therein, except as expressly set forth herein.
+You are permitted to:
 
-2. RESTRICTIONS
-   You may not:
-   a) Copy, modify, adapt, translate, reverse engineer, decompile, or disassemble the Software
-   b) Create derivative works based on the Software
-   c) Rent, lease, loan, sell, sublicense, distribute, transmit, or otherwise transfer rights to the Software
-   d) Remove any proprietary notices or labels on the Software
-   e) Use the Software for any commercial purpose without prior written consent
+- View the code and understand its structure
+- Reference the approach or logic with clear attribution
 
-3. CONFIDENTIALITY
-   The Software contains trade secrets and proprietary information of the Case Team. You agree to maintain the confidentiality of the Software and not to disclose any part of it to any third party without the prior written consent of the Case Team.
+You are not permitted to:
 
-4. NO WARRANTY
-   THE SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND. THE CASE TEAM DISCLAIMS ALL WARRANTIES, EITHER EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+- Use the code in any production or live environment
+- Copy, fork, modify, or redistribute this repository or its components
+- Sell, license, or incorporate this code into commercial products
 
-5. LIMITATION OF LIABILITY
-   IN NO EVENT SHALL THE CASE TEAM BE LIABLE FOR ANY SPECIAL, INCIDENTAL, INDIRECT, OR CONSEQUENTIAL DAMAGES WHATSOEVER (INCLUDING, WITHOUT LIMITATION, DAMAGES FOR LOSS OF BUSINESS PROFITS, BUSINESS INTERRUPTION, LOSS OF BUSINESS INFORMATION, OR ANY OTHER PECUNIARY LOSS) ARISING OUT OF THE USE OF OR INABILITY TO USE THE SOFTWARE.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 
-6. TERMINATION
-   This license is effective until terminated. Your rights under this license will terminate automatically without notice if you fail to comply with any of its terms and conditions.
+Unauthorized use of this code or violation of these terms may result in legal consequences.
 
-7. GOVERNING LAW
-   This license shall be governed by and construed in accordance with the laws of Bolivia, without regard to conflicts of law principles.
-
-8. ENTIRE AGREEMENT
-   This license constitutes the entire agreement between the parties relating to the Software and supersedes all prior or contemporaneous understandings regarding such subject matter.
-
-For licensing inquiries, please contact the Case Team.
-
----
-Case Team
-Bolivia 
+For questions or special permission requests, please contact the Case team directly.
