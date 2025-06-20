@@ -24,11 +24,14 @@ public class WalletEntity {
     @JoinColumn(name = "user_id")
     private UserEntity user;
 
-    @Column(name = "balance_bs", precision = 15, scale = 2)
-    private BigDecimal balanceBs = BigDecimal.ZERO;
+    @Column(name = "balance_local", precision = 15, scale = 2)
+    private BigDecimal balanceLocal = BigDecimal.ZERO;
 
-    @Column(name = "balance_usdt", precision = 15, scale = 8)
-    private BigDecimal balanceUsdt = BigDecimal.ZERO;
+    @Column(name = "balance_crypto", precision = 15, scale = 8)
+    private BigDecimal balanceCrypto = BigDecimal.ZERO;
+
+    @Column(name = "crypto_wallet_address")
+    private String cryptoWalletAddress;
 
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;

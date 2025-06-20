@@ -16,7 +16,8 @@ import java.util.UUID;
 public class Wallet {
     private UUID id;
     private UUID userId;
-    private BigDecimal balanceBs;
-    private BigDecimal balanceUsdt;
+    private BigDecimal balanceLocal;
+    private BigDecimal balanceCrypto;
+    private String cryptoWalletAddress;
     private LocalDateTime updatedAt;
 }

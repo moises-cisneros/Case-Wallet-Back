@@ -12,6 +12,6 @@ public interface UserRepositoryPort {
     boolean existsByEmail(String email);
     Optional<User> findByEmail(String email);
     boolean existsById(UUID ownerId);
-    Optional<User> findByPhoneNumber(String phoneNumber);
-    boolean existsByPhoneNumber(String phoneNumber);
+    Optional<User> findByGoogleId(String googleId);
+    boolean existsByGoogleId(String googleId);
 }

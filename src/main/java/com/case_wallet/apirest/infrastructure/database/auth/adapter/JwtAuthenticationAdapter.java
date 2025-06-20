@@ -21,7 +21,7 @@ public class JwtAuthenticationAdapter implements AuthenticationPort {
     }
 
     @Override
-    public String getPhoneNumberFromToken(String token) {
+    public String getEmailFromToken(String token) {
         return jwtService.extractUsername(token);
     }
 
@@ -29,11 +29,14 @@ public class JwtAuthenticationAdapter implements AuthenticationPort {
     public boolean validateToken(String token) {
         try {
             Claims extractedClaims = jwtService.extractClaim(token, claims -> claims);
-            return extractedClaims != null && !jwtService.isTokenValid(token, userEntityMapper.toNewEntity(
-                User.builder()
-                    .phoneNumber(extractedClaims.getSubject())
-                    .build()
-            ));
+            if (extractedClaims == null) {
+                return false;
+            }
+            String email = extractedClaims.getSubject();
+            User user = User.builder()
+                .email(email)
+                .build();
+            return jwtService.isTokenValid(token, userEntityMapper.toNewEntity(user));
         } catch (Exception e) {
             return false;
         }

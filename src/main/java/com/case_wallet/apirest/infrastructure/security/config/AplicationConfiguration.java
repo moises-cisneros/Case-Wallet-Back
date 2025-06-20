@@ -28,11 +28,9 @@ public class AplicationConfiguration {
     @Bean
     public UserDetailsService userDetailsService() {
         // Proporciona un UserDetailsService personalizado.
-        return phoneNumber -> jpaUserRepository.findByPhoneNumber(phoneNumber)
+        return username -> jpaUserRepository.findByEmail(username)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
     }
-
-    @Bean
     public PasswordEncoder passwordEncoder() {
         // Utiliza BCryptPasswordEncoder para el almacenamiento seguro de contraseñas.
         return new BCryptPasswordEncoder();

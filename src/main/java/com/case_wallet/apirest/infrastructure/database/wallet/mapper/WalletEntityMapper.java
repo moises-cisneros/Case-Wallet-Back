@@ -13,8 +13,8 @@ public class WalletEntityMapper {
         WalletEntity entity = new WalletEntity();
         entity.setId(wallet.getId());
         entity.setUser(new UserEntity(wallet.getUserId()));
-        entity.setBalanceBs(wallet.getBalanceBs());
-        entity.setBalanceUsdt(wallet.getBalanceUsdt());
+        entity.setBalanceLocal(wallet.getBalanceLocal());
+        entity.setBalanceCrypto(wallet.getBalanceCrypto());
         entity.setUpdatedAt(wallet.getUpdatedAt());
 
         return entity;

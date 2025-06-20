@@ -38,25 +38,25 @@ public class UserRepositoryPortImpl implements UserRepositoryPort {
     }
 
     @Override
-    public boolean existsByPhoneNumber(String phoneNumber) {
-        return userRepository.existsByPhoneNumber(phoneNumber);
-    }
-
-    @Override
-    public Optional<User> findByPhoneNumber(String phoneNumber) {
-        return userRepository.findByPhoneNumber(phoneNumber)
-                .map(userMapper::toModel);
-    }
-
-    // Métodos heredados que ya no se usarán pero deben mantenerse por compatibilidad
-    @Override
     public boolean existsByEmail(String email) {
-        return false;
+        return userRepository.existsByEmail(email);
     }
 
     @Override
     public Optional<User> findByEmail(String email) {
-        return Optional.empty();
+        return userRepository.findByEmail(email)
+                .map(userMapper::toModel);
+    }
+
+    @Override
+    public Optional<User> findByGoogleId(String googleId) {
+        return userRepository.findByGoogleId(googleId)
+                .map(userMapper::toModel);
+    }
+
+    @Override
+    public boolean existsByGoogleId(String googleId) {
+        return userRepository.existsByGoogleId(googleId);
     }
 
     @Override

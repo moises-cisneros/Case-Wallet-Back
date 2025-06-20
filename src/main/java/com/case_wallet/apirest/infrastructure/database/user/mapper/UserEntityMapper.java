@@ -14,8 +14,6 @@ public class UserEntityMapper {
         }
         UserEntity entity = new UserEntity();
         entity.setId(user.getId());
-        entity.setPassword(user.getPassword());
-        entity.setRole(user.getRole());
         return entity;
     }
 
@@ -25,8 +23,6 @@ public class UserEntityMapper {
         }
         User user = new User();
         user.setId(entity.getId());
-        user.setPassword(entity.getPassword());
-        user.setRole(entity.getRole());
         return user;
     }
 }

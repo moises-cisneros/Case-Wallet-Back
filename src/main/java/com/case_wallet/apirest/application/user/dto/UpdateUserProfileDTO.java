@@ -13,7 +13,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class UpdateUserProfileDTO {
     private UUID id;
-    private String phoneNumber;
+    private String email;
     //private String password; // Optional, for password updates
     //private String pinHash; // Optional, for PIN updates
     //private String mantleAddress; // Optional, for updating the Mantle address

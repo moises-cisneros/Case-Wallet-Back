@@ -21,6 +21,8 @@ public class Transaction {
     private BigDecimal amount;
     private String currency;
     private TransactionStatus status;
+    private String transactionHash;
+    private String blockchainAddress;
     private Map<String, Object> metadata;
     private LocalDateTime createdAt;
 }

@@ -12,8 +12,9 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 public class WalletBalanceDTO {
-    private BigDecimal balanceBs;
-    private BigDecimal balanceUsdt;
-    private String formattedBalanceBs;
-    private String formattedBalanceUsdt;
+    private BigDecimal balanceLocal;
+    private BigDecimal balanceCrypto;
+    private String formattedBalanceLocal;
+    private String formattedBalanceCrypto;
+    private String cryptoWalletAddress;
 }

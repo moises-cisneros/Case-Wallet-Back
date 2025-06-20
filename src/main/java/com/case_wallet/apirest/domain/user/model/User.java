@@ -5,7 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Set;
 import java.util.UUID;
+import java.util.HashSet;
 
 @Data
 @Builder
@@ -13,10 +15,12 @@ import java.util.UUID;
 @AllArgsConstructor
 public class User {
     private UUID id;
-    private String phoneNumber;
-    private String password;
-    private String pinHash;
-    private Role role;
+    private String email;
+    private String name;
+    private String googleId;
+    private Set<Role> roles = new HashSet<>();
     private KYCStatus kycStatus;
+    private UserState userState;
     private String mantleAddress;
+    private Boolean enabled = true;
 }

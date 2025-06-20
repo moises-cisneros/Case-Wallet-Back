@@ -1,5 +1,6 @@
 package com.case_wallet.apirest.infrastructure.security.jwt;
 
+import com.case_wallet.apirest.infrastructure.database.user.entity.RoleEntity;
 import com.case_wallet.apirest.infrastructure.database.user.entity.UserEntity;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -14,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.security.Key;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -42,7 +44,7 @@ public class JwtService {
 
         return Jwts.builder()
                 .setClaims(extraClaims)
-                .setSubject(userDetails.getUsername()) // Username es el número de teléfono
+                .setSubject(userDetails.getUsername()) // Username es el número de teléfono o email
                 .claim("authorities", userDetails.getAuthorities().stream()
                         .map(GrantedAuthority::getAuthority)
                         .collect(Collectors.toList()))
@@ -52,33 +54,51 @@ public class JwtService {
                 .compact();
     }
 
+    public String generateToken(String userId, Collection<? extends GrantedAuthority> authorities) {
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("userId", userId);
+        claims.put("authorities", authorities.stream()
+                .map(GrantedAuthority::getAuthority)
+                .collect(Collectors.toList()));
+
+        return Jwts.builder()
+                .setClaims(claims)
+                .setSubject(userId) // Using userId as subject for OAuth2 tokens
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + expirationTime))
+                .signWith(getSignInKey(), SignatureAlgorithm.HS256)
+                .compact();
+    }
+
     public String getToken(UserEntity user) {
-        log.debug("Generating token for user: {} with role: {}", user.getPhoneNumber(), user.getRole());
+        log.debug("Generating token for user: {} with roles: {}", user.getEmail(), user.getRoles().stream().map(RoleEntity::getName).collect(Collectors.joining(", ")));
         Map<String, Object> claims = new HashMap<>();
         claims.put("userId", user.getId().toString());
-        claims.put("role", user.getRole().name());
+        claims.put("authorities", user.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .collect(Collectors.toList()));
         return generateToken(claims, user);
     }
 
     public String extractUsername(String jwt) {
         try {
-            String phoneNumber = extractPhoneNumber(jwt);
-            log.debug("Extracted phone number from token: {}", phoneNumber);
-            return phoneNumber;
+            String username = extractSubject(jwt);
+            log.debug("Extracted username from token: {}", username);
+            return username;
         } catch (Exception e) {
-            log.error("Error extracting phone number from token: {}", e.getMessage(), e);
+            log.error("Error extracting username from token: {}", e.getMessage(), e);
             return null;
         }
     }
 
-    private String extractPhoneNumber(String token) {
+    private String extractSubject(String token) {
         return extractClaim(token, Claims::getSubject);
     }
 
     public boolean isTokenValid(String jwt, UserDetails userDetails) {
-        final String phoneNumber = extractUsername(jwt);
-        return (phoneNumber != null &&
-                phoneNumber.equals(userDetails.getUsername()) &&
+        final String username = extractUsername(jwt);
+        return (username != null &&
+                username.equals(userDetails.getUsername()) &&
                 !isTokenExpired(jwt));
     }
 

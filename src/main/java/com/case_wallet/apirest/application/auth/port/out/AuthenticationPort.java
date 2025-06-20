@@ -11,11 +11,11 @@ public interface AuthenticationPort {
     String generateToken(User user);
 
     /**
-     * Extrae el número de teléfono del token JWT
-     * @param token Token JWT del que se extraerá el número de teléfono
-     * @return Número de teléfono extraído del token
+     * Extrae el correo electrónico del token JWT
+     * @param token Token JWT del que se extraerá el correo electrónico
+     * @return Correo electrónico extraído del token
      */
-    String getPhoneNumberFromToken(String token);
+    String getEmailFromToken(String token);
 
     /**
      * Valida un token JWT

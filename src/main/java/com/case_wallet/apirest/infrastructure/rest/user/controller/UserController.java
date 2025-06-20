@@ -1,9 +1,7 @@
 package com.case_wallet.apirest.infrastructure.rest.user.controller;
 
-import com.case_wallet.apirest.application.user.dto.ChangePasswordDTO;
 import com.case_wallet.apirest.application.user.dto.UpdateUserProfileDTO;
 import com.case_wallet.apirest.application.user.dto.UserProfileDTO;
-import com.case_wallet.apirest.application.user.port.in.ChangeUserPasswordUseCase;
 import com.case_wallet.apirest.application.user.port.in.GetUserProfileUseCase;
 import com.case_wallet.apirest.application.user.port.in.UpdateUserProfileUseCase;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +21,6 @@ public class UserController {
 
     private final GetUserProfileUseCase getUserProfileUseCase;
     private final UpdateUserProfileUseCase updateUserProfileUseCase;
-    private final ChangeUserPasswordUseCase changeUserPasswordUseCase;
 
     @GetMapping("/{userId}/profile")
     public ResponseEntity<UserProfileDTO> getUserProfile(@PathVariable String userId, HttpServletRequest request) {
@@ -46,13 +43,5 @@ public class UserController {
     @PutMapping("/profile")
     public ResponseEntity<UserProfileDTO> updateProfile(@RequestBody UpdateUserProfileDTO updateUserProfileDTO) {
         return ResponseEntity.ok(updateUserProfileUseCase.updateProfile(updateUserProfileDTO));
-    }
-
-    @PutMapping("/{userId}/password")
-    public ResponseEntity<Void> changePassword(
-            @PathVariable String userId,
-            @RequestBody ChangePasswordDTO changePasswordDTO) {
-        changeUserPasswordUseCase.changePassword(UUID.fromString(userId), changePasswordDTO);
-        return ResponseEntity.ok().build();
     }
 }

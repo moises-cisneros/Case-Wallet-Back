@@ -90,13 +90,13 @@ public class WalletService implements WalletUseCase {
     private void updateBsBalance(Wallet wallet, Transaction transaction) {
         switch (transaction.getType()) {
             case DEPOSIT:
-                wallet.setBalanceBs(wallet.getBalanceBs().add(transaction.getAmount()));
+                wallet.setBalanceLocal(wallet.getBalanceLocal().add(transaction.getAmount()));
                 break;
             case WITHDRAWAL:
-                if (wallet.getBalanceBs().compareTo(transaction.getAmount()) < 0) {
+                if (wallet.getBalanceLocal().compareTo(transaction.getAmount()) < 0) {
                     throw new IllegalStateException("Insufficient BS balance");
                 }
-                wallet.setBalanceBs(wallet.getBalanceBs().subtract(transaction.getAmount()));
+                wallet.setBalanceLocal(wallet.getBalanceLocal().subtract(transaction.getAmount()));
                 break;
             // Implementar otros tipos de transacciones según sea necesario
         }
@@ -105,13 +105,13 @@ public class WalletService implements WalletUseCase {
     private void updateUsdtBalance(Wallet wallet, Transaction transaction) {
         switch (transaction.getType()) {
             case DEPOSIT:
-                wallet.setBalanceUsdt(wallet.getBalanceUsdt().add(transaction.getAmount()));
+                wallet.setBalanceCrypto(wallet.getBalanceCrypto().add(transaction.getAmount()));
                 break;
             case WITHDRAWAL:
-                if (wallet.getBalanceUsdt().compareTo(transaction.getAmount()) < 0) {
+                if (wallet.getBalanceCrypto().compareTo(transaction.getAmount()) < 0) {
                     throw new IllegalStateException("Insufficient USDT balance");
                 }
-                wallet.setBalanceUsdt(wallet.getBalanceUsdt().subtract(transaction.getAmount()));
+                wallet.setBalanceCrypto(wallet.getBalanceCrypto().subtract(transaction.getAmount()));
                 break;
             // Implementar otros tipos de transacciones según sea necesario
         }

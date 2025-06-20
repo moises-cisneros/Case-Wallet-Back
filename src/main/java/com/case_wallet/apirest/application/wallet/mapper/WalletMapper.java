@@ -16,22 +16,23 @@ public class WalletMapper {
         return Wallet.builder()
                 .id(entity.getId())
                 .userId(entity.getUser().getId())
-                .balanceBs(entity.getBalanceBs())
-                .balanceUsdt(entity.getBalanceUsdt())
+                .balanceLocal(entity.getBalanceLocal())
+                .balanceCrypto(entity.getBalanceCrypto())
                 .updatedAt(entity.getUpdatedAt())
                 .build();
     }
 
     public WalletBalanceDTO toBalanceDTO(Wallet wallet) {
         if (wallet == null) return null;
-        NumberFormat bsFormat = NumberFormat.getCurrencyInstance(new Locale("es", "VE"));
-        NumberFormat usdtFormat = NumberFormat.getCurrencyInstance(Locale.US);
+        NumberFormat localFormat = NumberFormat.getCurrencyInstance(new Locale("es", "VE"));
+        NumberFormat cryptoFormat = NumberFormat.getCurrencyInstance(Locale.US);
 
         return WalletBalanceDTO.builder()
-                .balanceBs(wallet.getBalanceBs())
-                .balanceUsdt(wallet.getBalanceUsdt())
-                .formattedBalanceBs(bsFormat.format(wallet.getBalanceBs()))
-                .formattedBalanceUsdt(usdtFormat.format(wallet.getBalanceUsdt()))
+                .balanceLocal(wallet.getBalanceLocal())
+                .balanceCrypto(wallet.getBalanceCrypto())
+                .formattedBalanceLocal(localFormat.format(wallet.getBalanceLocal()))
+                .formattedBalanceCrypto(cryptoFormat.format(wallet.getBalanceCrypto()))
+                .cryptoWalletAddress(wallet.getCryptoWalletAddress())
                 .build();
     }
 }

@@ -16,4 +16,7 @@ public class RoleEntity {
     private Integer id;
     private String name;
 
+    public RoleEntity(int i) {
+        this.id = i;
+    }
 }
