@@ -31,7 +31,7 @@ public class UserMapper {
 
         return UserProfileDTO.builder()
                 .id(user.getId())
-                .email(user.getEmail())
+                .email(user.getEmail() != null ? user.getEmail() : user.getPhoneNumber()) // Fallback to phone if no email
                 .roles(roleNames)
                 .kycStatus(user.getKycStatus())
                 .userState(user.getUserState())
@@ -81,11 +81,15 @@ public class UserMapper {
                 .email(entity.getEmail())
                 .name(entity.getName())
                 .googleId(entity.getGoogleId())
+                .phoneNumber(entity.getPhoneNumber())
+                .passwordHash(entity.getPasswordHash())
+                .pinHash(entity.getPinHash())
                 .roles(roles)
                 .kycStatus(entity.getKycStatus())
                 .userState(entity.getUserState())
                 .mantleAddress(entity.getMantleAddress())
                 .enabled(entity.getEnabled())
+                .createdAt(entity.getCreatedAt())
                 .build();
     }
 
@@ -102,6 +106,9 @@ public class UserMapper {
         entity.setEmail(model.getEmail());
         entity.setName(model.getName());
         entity.setGoogleId(model.getGoogleId());
+        entity.setPhoneNumber(model.getPhoneNumber());
+        entity.setPasswordHash(model.getPasswordHash());
+        entity.setPinHash(model.getPinHash());
         entity.setRoles(roleEntities);
         entity.setKycStatus(model.getKycStatus());
         entity.setUserState(model.getUserState());

@@ -63,4 +63,15 @@ public class UserRepositoryPortImpl implements UserRepositoryPort {
     public boolean existsById(UUID ownerId) {
         return userRepository.existsById(ownerId);
     }
+
+    @Override
+    public Optional<User> findByPhoneNumber(String phoneNumber) {
+        return userRepository.findByPhoneNumber(phoneNumber)
+                .map(userMapper::toModel);
+    }
+
+    @Override
+    public boolean existsByPhoneNumber(String phoneNumber) {
+        return userRepository.existsByPhoneNumber(phoneNumber);
+    }
 }

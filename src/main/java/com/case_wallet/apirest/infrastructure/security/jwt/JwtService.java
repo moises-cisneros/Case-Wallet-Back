@@ -71,7 +71,7 @@ public class JwtService {
     }
 
     public String getToken(UserEntity user) {
-        log.debug("Generating token for user: {} with roles: {}", user.getEmail(), user.getRoles().stream().map(RoleEntity::getName).collect(Collectors.joining(", ")));
+        log.debug("Generating token for user: {} with roles: {}", user.getPhoneNumber(), user.getRoles().stream().map(RoleEntity::getName).collect(Collectors.joining(", ")));
         Map<String, Object> claims = new HashMap<>();
         claims.put("userId", user.getId().toString());
         claims.put("authorities", user.getAuthorities().stream()

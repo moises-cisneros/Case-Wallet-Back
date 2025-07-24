@@ -1,14 +1,16 @@
 package com.case_wallet.apirest.infrastructure.security.service;
 
+import com.case_wallet.apirest.infrastructure.database.user.entity.RoleEntity;
+import com.case_wallet.apirest.infrastructure.database.user.entity.UserEntity;
 import com.case_wallet.apirest.infrastructure.database.user.repository.JpaUserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -19,25 +21,26 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private final JpaUserRepository userRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        return userRepository.findByEmail(email)
-                .map(user -> {
-                    log.info("Loading user details for email: {} with roles: {}",
-                            email,
+    public UserDetails loadUserByUsername(String identifier) throws UsernameNotFoundException {
+        // Try to find by phone number first (new authentication)
+        Optional<UserEntity> userOpt = userRepository.findByPhoneNumber(identifier);
+        
+        // If not found by phone, try by email (legacy authentication)
+        if (userOpt.isEmpty()) {
+            userOpt = userRepository.findByEmail(identifier);
+        }
+        
+        return userOpt.map(user -> {
+                    log.info("Loading user details for identifier: {} with roles: {}",
+                            identifier,
                             user.getRoles().stream()
-                                    .map(role -> role.getName())
+                                    .map(RoleEntity::getName)
                                     .collect(Collectors.joining(", ")));
-                    return new org.springframework.security.core.userdetails.User(
-                            user.getEmail(),
-                            "", // Password field is no longer used for Google OAuth
-                            user.getRoles().stream()
-                                    .map(role -> new SimpleGrantedAuthority(role.getName()))
-                                    .collect(Collectors.toList())
-                    );
+                    return user; // Return the UserEntity directly as it implements UserDetails
                 })
                 .orElseThrow(() -> {
-                    log.error("User not found with email: {}", email);
-                    return new UsernameNotFoundException("User not found with email: " + email);
+                    log.error("User not found with identifier: {}", identifier);
+                    return new UsernameNotFoundException("User not found with identifier: " + identifier);
                 });
     }
 }

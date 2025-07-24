@@ -14,4 +14,8 @@ public interface UserRepositoryPort {
     boolean existsById(UUID ownerId);
     Optional<User> findByGoogleId(String googleId);
     boolean existsByGoogleId(String googleId);
+    
+    // New methods for phone-based authentication
+    Optional<User> findByPhoneNumber(String phoneNumber);
+    boolean existsByPhoneNumber(String phoneNumber);
 }

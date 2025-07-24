@@ -27,6 +27,9 @@ public class UserEntity implements UserDetails {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    @Column(name = "phone_number", unique = true)
+    private String phoneNumber;
+
     @Column(unique = true)
     private String email;
 
@@ -35,9 +38,15 @@ public class UserEntity implements UserDetails {
     @Column(unique = true)
     private String googleId;
 
+    @Column(name = "password_hash")
+    private String passwordHash;
+
+    @Column(name = "pin_hash")
+    private String pinHash;
+
     @Column(name = "kyc_status")
     @Enumerated(EnumType.STRING)
-    private KYCStatus kycStatus = KYCStatus.NONE;
+    private KYCStatus kycStatus = KYCStatus.PENDING;
 
     @Column(name = "mantle_address", length = 42)
     private String mantleAddress;
@@ -64,8 +73,7 @@ public class UserEntity implements UserDetails {
     protected void onCreate() {
         createdAt = LocalDateTime.now();
         if (roles.isEmpty()) {
-            // Assign default role if no roles are set, e.g., via constructor or builder
-            // This part might need adjustment based on how roles are initially assigned
+            // Assign default role if no roles are set
         }
     }
 
@@ -78,12 +86,19 @@ public class UserEntity implements UserDetails {
 
     @Override
     public String getPassword() {
-        return ""; // Password not used for Google OAuth users
+        return passwordHash != null ? passwordHash : ""; // For OAuth users without password
     }
 
     @Override
     public String getUsername() {
-        return email; // Use email as username for OAuth2 users
+        // Priority: phone number > email > googleId
+        if (phoneNumber != null && !phoneNumber.isEmpty()) {
+            return phoneNumber;
+        }
+        if (email != null && !email.isEmpty()) {
+            return email;
+        }
+        return googleId;
     }
 
     @Override

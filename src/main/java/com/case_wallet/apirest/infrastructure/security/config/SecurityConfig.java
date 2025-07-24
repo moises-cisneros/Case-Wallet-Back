@@ -44,7 +44,7 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(auth -> auth
                         // Endpoints públicos
-                        .requestMatchers("/api/v1/auth/**", "/oauth2/**", "/login/oauth2/code/**").permitAll()
+                        .requestMatchers("/api/v1/auth/**", "/api/v1/oauth/**","/oauth2/**", "/login/oauth2/code/**").permitAll()
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
                         // Endpoints administrativos
