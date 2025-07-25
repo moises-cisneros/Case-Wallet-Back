@@ -31,5 +31,70 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Application Configuration ###
 /src/main/resources/application.properties
+/src/main/resources/application-*.properties
+application-local.properties
+application-dev.properties
+application-prod.properties
+
+### Logs ###
+*.log
+logs/
+log/
+
+### OS ###
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+### Temporary files ###
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+### Environment variables ###
+.env
+.env.local
+.env.development
+.env.production
+
+### Database ###
+*.db
+*.sqlite
+*.sqlite3
+
+### Generated sources ###
+/src/generated/
+/target/generated-sources/
+/target/generated-test-sources/
+
+### IDE specific ###
+*.code-workspace
+.metals/
+.bloop/
+.ammonite/
+
+### Maven ###
+dependency-reduced-pom.xml
+.flattened-pom.xml
+
+### Test coverage ###
+coverage/
+*.coverage
+jacoco.exec
+
+### Utils ###
 /src/main/java/com/case_wallet/apirest/common/utils/DataGenerator.java
+/src/main/java/com/case_wallet/apirest/infrastructure/blockchain/contracts/USDTContract.java
+/src/main/java/com/case_wallet/apirest/infrastructure/blockchain/contracts/DepositWalletFactory.java
+
+## Testing files
+docs
